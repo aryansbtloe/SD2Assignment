@@ -10,6 +10,7 @@ import UIKit
 class HomeScreenViewController: UIViewController,UITableViewDelegate,UITableViewDataSource {
 
     @IBOutlet weak var tableView : UITableView!
+    @IBOutlet weak var informationLabel : UILabel!
     fileprivate var paginationController = Paginator()
 
     override internal func viewDidLoad() {
@@ -87,6 +88,11 @@ extension HomeScreenViewController {
 //MARK: - UITableView Delegate & Data Source
 extension HomeScreenViewController {
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
+        if paginationController.results.count > 0 {
+            informationLabel.isHidden = true
+        }else{
+            informationLabel.isHidden = false
+        }
         return paginationController.results.count
     }
     
